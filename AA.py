@@ -1,14 +1,11 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-n=int(input())
-for i in range(n):
-    s=input()
-    s=s.upper()
-    size=len(s)
-    for j in range(size//2):
-        if s[j]!=s[-1-j]:
-            print("#%d NO" %(i+1))
-            break
-    else:
-        print("#%d YES" %(i+1))
+a=list(range(21))
+for _ in range(10):
+    s, e=map(int,input().split())
+    for i in range((e-s+1)//2):
+        a[s+i], a[e-i] = a[e-i], a[s+i]
+a.pop(0)
+for x in a:
+    print(x, end=' ')
