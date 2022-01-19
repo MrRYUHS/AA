@@ -1,11 +1,22 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-a=list(range(21))
-for _ in range(10):
-    s, e=map(int,input().split())
-    for i in range((e-s+1)//2):
-        a[s+i], a[e-i] = a[e-i], a[s+i]
-a.pop(0)
-for x in a:
+n=int(input())
+a=list(map(int,input().split()))
+m=int(input())
+b=list(map(int,input().split()))
+p1=p2=0
+c=[]
+while p1<n and p2<m:
+    if a[p1] <= b[p2]:
+        c.append(a[p1])
+        p1+=1
+    else:
+        c.append(b[p2])
+        p2+=1
+if p1<n:
+    c=c+a[p1:]
+if p2<m:
+    c=c+b[p2:]
+for x in c:
     print(x, end=' ')
