@@ -2,21 +2,13 @@ import sys
 sys.stdin=open("input.txt", "rt")
 
 n=int(input())
-a=list(map(int,input().split()))
-m=int(input())
-b=list(map(int,input().split()))
-p1=p2=0
-c=[]
-while p1<n and p2<m:
-    if a[p1] <= b[p2]:
-        c.append(a[p1])
-        p1+=1
+for i in range(n):
+    s=input()
+    s=s.upper()
+    size=len(s)
+    for j in range(size//2):
+        if s[j]!=s[-1-j]:
+            print("#%d NO" %(i+1))
+            break
     else:
-        c.append(b[p2])
-        p2+=1
-if p1<n:
-    c=c+a[p1:]
-if p2<m:
-    c=c+b[p2:]
-for x in c:
-    print(x, end=' ')
+        print("#%d YES" %(i+1))
