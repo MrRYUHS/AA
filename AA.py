@@ -26,4 +26,5 @@ while lt<=rt:
         lt=mid+1
     else:
         rt=mid-1
+
 print(res)
