@@ -1,18 +1,27 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-n, m=map(int,input().split())
-a=list(map(int,input().split()))
-a.sort()
-lt=0
-rt=n-1
-mid=0
+def Count(len):
+    cnt=0
+    for i in Line:
+        cnt+=(i//len)
+    return cnt
+
+k, n=map(int,input().split())
+Line=[]
+res=0
+largest=0
+for i in range(k):
+    tmp=int(input())
+    Line.append(tmp)
+    largest=max(largest, tmp)
+lt=1
+rt=largest
 while lt<=rt:
     mid=(lt+rt)//2
-    if a[mid]==m:
-        print(mid+1)
-        break
-    elif a[mid]>m:
-        rt=mid-1
-    else:
+    if Count(mid)>=n:
+        res=mid
         lt=mid+1
+    else:
+        rt=mid-1
+print(res)
