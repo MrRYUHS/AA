@@ -1,30 +1,18 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-def Count(len):
-    cnt=1
-    ep=Line[0]
-    for i in range(1, n):
-        if Line[i]-ep>=len:
-            cnt+=1
-            ep=Line[i]
-    return cnt
-
-n, c=map(int,input().split())
-Line=[]
-for _ in range(n):
-    tmp=int(input())
-    Line.append(tmp)
-Line.sort()
-lt=1
-rt=Line[n-1]
-res=0
+n, m=map(int,input().split())
+a=list(map(int,input().split()))
+a.sort()
+lt=0
+rt=n-1
+mid=0
 while lt<=rt:
     mid=(lt+rt)//2
-    if Count(mid)>=c:
-        res=mid
-        lt=mid+1
-    else:
+    if a[mid]==m:
+        print(mid+1)
+        break
+    elif a[mid]>m:
         rt=mid-1
-
-print(res)
+    else:
+        lt=mid+1
