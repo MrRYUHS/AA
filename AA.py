@@ -1,27 +1,29 @@
 import sys
 sys.stdin=open("input.txt", "rt")
-def Count(capa):
+
+def Count(len):
     cnt=1
-    sum=0
-    for i in Music:
-        if sum+i>capa:
+    ep=Line[0]
+    for i in range(1,n):
+        if Line[i]-ep>=len:
             cnt+=1
-            sum=i
-        else:
-            sum+=i
+            ep=Line[i]
     return cnt
 
-n, m=map(int,input().split())
-Music=list(map(int,input().split()))
-maxx=max(Music)
+n, c=map(int,input().split())
+Line=[]
+for _ in range(n):
+    tmp=int(input())
+    Line.append(tmp)
+Line.sort()
 lt=1
-rt=sum(Music)
+rt=Line[n-1]
 res=0
 while lt<=rt:
     mid=(lt+rt)//2
-    if mid>=maxx and Count(mid)<=m:
+    if Count(mid)>=c:
         res=mid
-        rt=mid-1
-    else:
         lt=mid+1
+    else:
+        rt=mid-1
 print(res)
