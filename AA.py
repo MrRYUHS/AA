@@ -1,29 +1,16 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-def Count(len):
-    cnt=1
-    ep=Line[0]
-    for i in range(1,n):
-        if Line[i]-ep>=len:
-            cnt+=1
-            ep=Line[i]
-    return cnt
-
-n, c=map(int,input().split())
-Line=[]
-for _ in range(n):
-    tmp=int(input())
-    Line.append(tmp)
-Line.sort()
-lt=1
-rt=Line[n-1]
-res=0
-while lt<=rt:
-    mid=(lt+rt)//2
-    if Count(mid)>=c:
-        res=mid
-        lt=mid+1
-    else:
-        rt=mid-1
-print(res)
+n=int(input())
+mt=[]
+for i in range(n):
+    s,e=map(int,input().split())
+    mt.append((s,e))
+mt.sort(key=lambda i:(i[1], i[0]))
+et=0
+cnt=0
+for s,e in mt:
+    if s>=et:
+        et=e
+        cnt+=1
+print(cnt)
