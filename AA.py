@@ -3,26 +3,14 @@ sys.stdin=open("input.txt", "rt")
 
 n=int(input())
 a=list(map(int,input().split()))
-lt=0
-rt=n-1
-last=0
-res=""
-tmp=[]
-while lt<=rt:
-    if a[lt]>last:
-        tmp.append((a[lt], 'L'))
-    if a[rt]>last:
-        tmp.append((a[rt], 'R'))
-    tmp.sort()
-    if len(tmp)==0:
-        break
-    else:
-        res+=tmp[0][1]
-        last=tmp[0][0]
-        if tmp[0][1]=='L':
-            lt+=1
-        else:
-            rt-=1
-    tmp.clear()
-print(len(res))
-print(res)
+a.insert(0,0)
+seq=[0]*n
+for i in range(1, n+1):
+    for j in range(n):
+        if a[i]==0 and seq[j]==0:
+            seq[j]=i
+            break
+        elif seq[j]==0:
+            a[i]-=1
+for x in seq:
+    print(x, end=' ')
