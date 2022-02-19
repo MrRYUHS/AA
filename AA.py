@@ -1,15 +1,16 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-num,m=map(int,input().split())
-num=list(map(int,str(num)))
+s=input()
 stack=[]
-for i in num:
-    while stack and m>0 and stack[-1]<i:
+cnt=0
+for i in range(len(s)):
+    if s[i]=='(':
+        stack.append(s[i])
+    else:
         stack.pop()
-        m-=1
-    stack.append(i)
-if m!=0:
-    stack=stack[:-m]
-res=''.join(map(str,stack))
-print(res)
+        if s[i-1]=='(':
+            cnt+=len(stack)
+        else:
+            cnt+=1
+print(cnt)
