@@ -2,14 +2,16 @@ import sys
 from collections import deque
 sys.stdin=open("input.txt", "rt")
 
-n,k=map(int,input().split())
-dq=list(range(1, n+1))
-dq=deque(dq)
-while dq:
-    for _ in range(k-1):
-        cur=dq.popleft()
-        dq.append(cur)
-    dq.popleft()
-    if len(dq)==1:
-        print(dq[0])
-        dq.popleft()
+n,m=map(int,input().split())
+a=[(pos,val) for pos,val in enumerate(list(map(int,input().split())))]
+Q=deque(a)
+cnt=0
+while True:
+    cur=Q.popleft()
+    if any(cur[1]<x[1] for x in Q):
+        Q.append(cur)
+    else:
+        cnt+=1
+        if cur[0]==m:
+            print(cnt)
+            break
