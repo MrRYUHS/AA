@@ -1,15 +1,15 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-num,m=map(int,input().split())
-num=list(map(int,str(num)))
-stack=[]
-for x in num:
-    while stack and m>0 and x>stack[-1]:
-        stack.pop()
-        m-=1
-    stack.append(x)
-if m!=0:
-    stack=stack[:-m]
-res=''.join(map(str, stack))
-print(res)
+n=int(input())
+p=dict()
+for i in range(n):
+    word=input()
+    p[word]=1
+for i in range(n-1):
+    word=input()
+    p[word]=0
+for key, val in p.items():
+    if val==1:
+        print(key)
+        break
