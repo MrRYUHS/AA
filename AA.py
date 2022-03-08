@@ -1,14 +1,16 @@
 import sys
 sys.stdin=open("input.txt", "rt")
 
-n=int(input())
-p=dict()
-for i in range(n):
-    word=input()
-    p[word]=1
-for i in range(n-1):
-    word=input()
-    p[word]=0
-for key, val in p.items():
-    if val==1:
-        print(key)
+a=input()
+b=input()
+sh=dict()
+for x in a:
+    sh[x]=sh.get(x,0)+1
+for x in b:
+    sh[x]=sh.get(x,0)-1
+for x in a:
+    if sh.get(x)>0:
+        print("NO")
+        break
+else:
+    print("YES")
