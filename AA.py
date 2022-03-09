@@ -1,16 +1,16 @@
 import sys
+import heapq as hq
 sys.stdin=open("input.txt", "rt")
 
-a=input()
-b=input()
-sh=dict()
-for x in a:
-    sh[x]=sh.get(x,0)+1
-for x in b:
-    sh[x]=sh.get(x,0)-1
-for x in a:
-    if sh.get(x)>0:
-        print("NO")
+a=[]
+while True:
+    n=int(input())
+    if n==-1:
         break
-else:
-    print("YES")
+    if n==0:
+        if len(a)==0:
+            print(-1)
+        else:
+            print(hq.heappop(a))
+    else:
+        hq.heappush(a,n)
