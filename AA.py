@@ -1,16 +1,15 @@
 import sys
-import heapq as hq
 sys.stdin=open("input.txt", "rt")
 
-a=[]
-while True:
-    n=int(input())
-    if n==-1:
-        break
-    if n==0:
-        if len(a)==0:
-            print(-1)
-        else:
-            print(-hq.heappop(a))
-    else:
-        hq.heappush(a,-n)
+num,m=map(int,input().split())
+num=list(map(int,str(num)))
+stack=[]
+for x in num:
+    while stack and m>0 and stack[-1]<x:
+        stack.pop()
+        m-=1
+    stack.append(x)
+if m!=0:
+    stack=stack[:-m]
+for i in stack:
+    print(i, end='')
