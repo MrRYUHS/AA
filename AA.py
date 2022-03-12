@@ -3,15 +3,25 @@ sys.stdin=open("input.txt", "rt")
 
 s=input()
 stack=[]
-cnt=0
-for i in range(len(s)):
-    if s[i]=='(':
-        stack.append(s[i])
-    else:        
-        if s[i-1]=='(':
+res=''
+for i in s:
+    if i.isdecimal():
+        res+=i
+    else:
+        if i=='(':
+            stack.append(i)
+        elif i=='*' or i=='/':
+            while stack and (stack[-1]=='*' or stack[-1]=='/'):
+                res+=stack.pop()
+            stack.append(i)
+        elif i=='+' or i=='-':
+            while stack and stack[-1]!='(':
+                res+=stack.pop()
+            stack.append(i)
+        elif i==')':
+            while stack and stack[-1]!='(':
+                res+=stack.pop()
             stack.pop()
-            cnt+=len(stack)
-        else:
-            stack.pop()
-            cnt+=1
-print(cnt)
+while stack:
+    res+=stack.pop()
+print(res)
