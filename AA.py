@@ -1,27 +1,15 @@
 import sys
-sys.stdin=open("input.txt", "rt")
+from collections import deque
+sys.stdin=open("input.txt","rt")
 
-s=input()
-stack=[]
-res=''
-for i in s:
-    if i.isdecimal():
-        res+=i
-    else:
-        if i=='(':
-            stack.append(i)
-        elif i=='*' or i=='/':
-            while stack and (stack[-1]=='*' or stack[-1]=='/'):
-                res+=stack.pop()
-            stack.append(i)
-        elif i=='+' or i=='-':
-            while stack and stack[-1]!='(':
-                res+=stack.pop()
-            stack.append(i)
-        elif i==')':
-            while stack and stack[-1]!='(':
-                res+=stack.pop()
-            stack.pop()
-while stack:
-    res+=stack.pop()
-print(res)
+n,k=map(int,input().split())
+dq=list(range(1,n+1))
+dq=deque(dq)
+while dq:
+    for _ in range(k-1):
+        cur=dq.popleft()
+        dq.append(cur)
+    dq.popleft()
+    if len(dq)==1:
+        print(dq[0])
+        dq.popleft()
