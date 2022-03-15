@@ -1,19 +1,14 @@
 import sys
-from collections import deque
 sys.stdin=open("input.txt", "rt")
 
-need=input()
 n=int(input())
+p=dict()
 for i in range(n):
-    plan=input()
-    dq=deque(need)
-    for x in plan:
-        if x in dq:
-            if x!=dq.popleft():
-                print("#%d NO" %(i+1))
-                break
-    else:
-        if len(dq)==0:
-            print("#%d YES" %(i+1))
-        else:
-            print("#%d NO" %(i+1))
+    word=input()
+    p[word]=1
+for i in range(n-1):
+    word=input()
+    p[word]=0
+for key,val in p.items():
+    if val==1:
+        print(key)
