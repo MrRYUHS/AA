@@ -1,5 +1,4 @@
 import sys
-import heapq as hq
 sys.stdin=open("input.txt", "rt")
 
 a=[]
@@ -11,6 +10,6 @@ while True:
         if len(a)==0:
             print(-1)
         else:
-            print(hq.heappop(a))
+            print(-hq.heappop(a))
     else:
-        hq.heappush(a,n)
+        hq.heappush(a,-n)
