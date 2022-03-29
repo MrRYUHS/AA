@@ -1,14 +1,22 @@
 import sys
-sys.stdin=open("input.txt", "rt")
-num, m=map(int, input().split())
-num=list(map(int, str(num)))
-stack=[]
-for x in num:
-    while stack and m>0 and stack[-1]<x:
-        stack.pop()
-        m-=1
-    stack.append(x)
-if m!=0:
-    stack=stack[:-m]
-res=''.join(map(str, stack))
-print(res)
+sys.stdin=open("input.txt", "r")
+
+a=input()
+b=input()
+str1=dict()
+str2=dict()
+for x in a:
+    str1[x]=str1.get(x, 0)+1
+for x in b:
+    str2[x]=str2.get(x, 0)+1
+
+for i in str1.keys():
+    if i in str2.keys():
+        if str1[i]!=str2[i]:
+            print("NO")
+            break
+    else:
+        print("NO")
+        break
+else:
+    print("YES")
