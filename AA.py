@@ -1,22 +1,16 @@
 import sys
+from collections import deque
 sys.stdin=open("input.txt", "r")
-
-a=input()
-b=input()
-str1=dict()
-str2=dict()
-for x in a:
-    str1[x]=str1.get(x, 0)+1
-for x in b:
-    str2[x]=str2.get(x, 0)+1
-
-for i in str1.keys():
-    if i in str2.keys():
-        if str1[i]!=str2[i]:
-            print("NO")
-            break
+n, m=map(int, input().split())
+Q=[(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
+Q=deque(Q)
+cnt=0
+while True:
+    cur=Q.popleft()
+    if any(cur[1]<x[1] for x in Q):
+        Q.append(cur)
     else:
-        print("NO")
-        break
-else:
-    print("YES")
+        cnt+=1
+        if cur[0]==m:
+            print(cnt)
+            break
