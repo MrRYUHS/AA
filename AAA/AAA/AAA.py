@@ -1,12 +1,11 @@
 import sys
 sys.stdin=open("input.txt", "r")
-def DFS(x):
-    if x==0:
+def DFS(v):
+    if v>7:
         return
     else:
-        
-        DFS(x//2)
-        print(x%2, end=" ")
+        print(v, end='')
+        DFS(v*2)
+        DFS(v*2+1)
 if __name__=="__main__":
-    n=int(input())
-    DFS(n)
+    DFS(1)
