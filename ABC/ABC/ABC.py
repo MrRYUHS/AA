@@ -1,20 +1,12 @@
 import sys
 sys.stdin=open("input.txt", "rt")
-def DFS(L, s):
-    global cnt
-    if L==m:
-        for i in range(m):
-            print(res[i], end=' ')
-        print()
-        cnt+=1
-    else:
-        for i in range(s, n+1):
-            res[L]=i
-            DFS(L+1, i+1)
-
-
-n, m = map(int, input().split())
-res=[0]*(n+1)
-cnt=0
-DFS(0, 1)
-print(cnt)
+n, k=map(int,input().split())
+a=list(map(int,input().split()))
+res=set()
+for i in range(n):
+    for j in range(i+1, n):
+        for m in range(j+1, n):
+            res.add(a[i]+a[j]+a[m])
+res=list(res)
+res.sort(reverse=True)
+print(res[k-1])
